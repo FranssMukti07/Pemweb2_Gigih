@@ -16,7 +16,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="addon-wrapping">Kode</span>
                                             <input type="text" name="id" class="form-control" placeholder="Nomer Induk Mahasiswa" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_prodi_detail->id; ?>" hidden>
-                                            <input type="text" name="kode" class="form-control" placeholder="Kode Prodi" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_prodi_detail->kode; ?>" required>
+                                            <input type="text" name="kode" pattern="[A-Z]{2,3}" title="Hanya 2/3 Huruf!!" class="form-control" placeholder="Kode Prodi" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_prodi_detail->kode; ?>" required>
                                         </div>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="addon-wrapping">Nama</span>

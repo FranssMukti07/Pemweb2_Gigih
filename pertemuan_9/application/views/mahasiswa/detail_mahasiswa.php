@@ -10,7 +10,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between">
                         <h6><strong>NIM</strong></h6>
-                        <h6><?= $mhs['nim'] ?></h6>
+                        <h6><?= "011022" . $mhs['nim'] ?></h6>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <h6><strong>Gender</strong></h6>

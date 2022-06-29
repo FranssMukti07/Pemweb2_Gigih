@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .login-dark {
-            height: 100vh;
+            height: 130vh;
             background: #475d62 url(../../assets/img/star-sky.jpg);
             background-size: cover;
             position: relative;
@@ -28,13 +28,6 @@
             left: 50%;
             color: #fff;
             box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .login-dark .illustration {
-            text-align: center;
-            padding: 15px 0 20px;
-            font-size: 100px;
-            color: #2980ef;
         }
 
         .login-dark form .form-control {
@@ -64,21 +57,6 @@
             outline: none;
         }
 
-        .login-dark form .forgot {
-            display: block;
-            text-align: center;
-            font-size: 12px;
-            color: #6f7a85;
-            opacity: 0.9;
-            text-decoration: none;
-        }
-
-        .login-dark form .forgot:hover,
-        .login-dark form .forgot:active {
-            opacity: 1;
-            text-decoration: none;
-        }
-
         .login-dark form .btn-primary:active {
             transform: translateY(1px);
         }
@@ -87,32 +65,58 @@
 
 <body>
     <div class="login-dark">
-        <form method="post" action="<?= base_url('auth/login') ?>">
-            <!-- buat logic untuk pesan  -->
-            <?php if ($this->session->flashdata('message', 'message_login_error')) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= $this->session->flashdata('message', 'message_login_error'); ?>
+        <form method="post" action="<?= base_url('auth/registrasi') ?>">
+            <!-- logika pesan kesalahan -->
+            <?php if ($this->session->flashdata('message', 'message_regist_error')) : ?>
+                <div class="alert alert-danger" role_id="alert">
+                    <?= $this->session->flashdata('message', 'message_regist_error'); ?>
                 </div>
             <?php endif; ?>
-            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <h3></h3>
             <div class="form-group">
+                <label for="name">Nama</label>
+                <input class="form-control <?= form_error('name') ? 'invalid' : '' ?>" type="text" name="name" placeholder="Nama Lengkap" value="<?= set_value('name') ?>" required>
+                <div class="invalid-feedback">
+                    <?= form_error('name') ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control <?= form_error('email') ? 'invalid' : '' ?>" type="email" name="email" placeholder="Email" value="<?= set_value('email') ?>" required>
+                <div class="invalid-feedback">
+                    <?= form_error('email') ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
                 <input class="form-control <?= form_error('username') ? 'invalid' : '' ?>" type="text" name="username" placeholder="Username" value="<?= set_value('username') ?>" required>
                 <div class="invalid-feedback">
                     <?= form_error('username') ?>
                 </div>
             </div>
             <div class="form-group">
+                <label for="password">Password</label>
                 <input class="form-control <?= form_error('password') ? 'invalid' : '' ?>" type="password" name="password" placeholder="Password" value="<?= set_value('password') ?>" required>
                 <div class="invalid-feedback">
                     <?= form_error('password') ?>
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Login">
+                <label for="password2">Konfirmasi Password</label>
+                <input class="form-control <?= form_error('password2') ? 'invalid' : '' ?>" type="password" name="password2" placeholder="Konfirmasi Password" value="<?= set_value('password2') ?>" required>
+                <div class="invalid-feedback">
+                    <?= form_error('password2') ?>
+                </div>
             </div>
-            <!-- Buat link Registrasi User -->
-            <div class="forgot">
-                <a href="<?= base_url('auth/halaman_regist'); ?>">Registrasi User</a>
+            <div class="form-group">
+                <label for="role_id">Role</label>
+                <select class="form-control <?= form_error('role_id') ? 'invalid' : '' ?>" name="role_id" required>
+                    <option value="1">Admin</option>
+                    <option value="2">User</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Registrasi">
             </div>
         </form>
     </div>

@@ -16,12 +16,14 @@ class Mahasiswa_model extends CI_Model
         return $query->result();
     }
 
-    public function get_by_id($id){
+    public function get_by_id($id)
+    {
         $query = $this->db->get_where('mahasiswa', ['id' => $id]);
         return $query->row();
     }
 
-    public function detailMahasiswa($id){
+    public function detailMahasiswa($id)
+    {
         $query = $this->db->get_where('mahasiswa', ['id' => $id]);
         return $query->row_array();
     }
@@ -35,7 +37,8 @@ class Mahasiswa_model extends CI_Model
         return $this->get_by_id($insert_id);
     }
 
-    public function edit($id, $data){
+    public function edit($id, $data)
+    {
         $this->db->where('id', $id);
 
         $this->db->update('mahasiswa', $data);

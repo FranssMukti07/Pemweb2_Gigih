@@ -6,6 +6,33 @@
             <div class="container">
                 <div class="row">
                     <div class="mt-lg-3 mx-auto">
+                        <!-- Logika pesan berhasil buat data -->
+                        <?php if ($this->session->flashdata('message_success')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil ditambahkan!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
+                        <!-- Logika pesan berhasil delete -->
+                        <?php if ($this->session->flashdata('message')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil dihapus!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
+                        <!-- Logika pesan berhasil edit -->
+                        <?php if ($this->session->flashdata('success')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil diubah!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                         <h3 class="text-center display-4">
                             Daftar Dosen STT-NF
                         </h3>
@@ -30,7 +57,7 @@
                                         <td><?= $row->pendidikan_akhir ?></td>
                                         <td><?= $row->prodi_kode ?></td>
                                         <td>
-                                            <a class="btn btn-info" href="<?= base_url(); ?>dosen/detail/<?= $row->id;?>">Detail</a>
+                                            <a class="btn btn-info" href="<?= base_url(); ?>dosen/detail/<?= $row->id; ?>">Detail</a>
                                             <a class="btn btn-success" href="<?= base_url(); ?>dosen/halaman_edit/<?= $row->id; ?>">Edit</a>
                                             <a class="btn btn-danger" href="<?= base_url(); ?>dosen/delete_dosen/<?= $row->id; ?>" onclick="return hapus('Yakin ingin menghapus data <?= $row->nama; ?>')">Delete</a>
                                         </td>

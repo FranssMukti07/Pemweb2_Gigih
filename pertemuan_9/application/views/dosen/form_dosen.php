@@ -9,7 +9,7 @@
                         <div class="input-group flex-nowrap d-flex flex-column" style="gap: 5px;">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">NIDN</span>
-                                <input type="text" name="nidn" class="form-control" placeholder="Nomer Induk Dosen Nasional" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                <input type="text" name="nidn" pattern="[0-9]{4}" title="Harus 4 digit!!" class="form-control" placeholder="Nomer Induk Dosen Nasional" aria-label="Username" aria-describedby="addon-wrapping" required>
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Nama</span>
@@ -17,7 +17,11 @@
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Gender</span>
-                                <input type="text" name="gender" class="form-control" placeholder="Jenis Kelamin" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                <select name="gender" id="gender" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                    <option value="" selected disabled>-- Pilih Gender --</option>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Tempat Lahir</span>
@@ -29,11 +33,24 @@
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Pendidikan Terakhir</span>
-                                <input type="text" name="pendidikan_akhir" class="form-control" placeholder="Pendidikan Terakhir" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                <select name="pendidikan_akhir" id="pendidikan_akhir" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                    <option value="" selected disabled>-- Pilih Pendidikan Terakhir --</option>
+                                    <option value="SMA">SMA</option>
+                                    <option value="DIII">DIII</option>
+                                    <option value="DIV">DIV</option>
+                                    <option value="S1">S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
+                                </select>
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Program Studi</span>
-                                <input type="text" name="prodi_kode" class="form-control" placeholder="Dosen Program Studi" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                <select name="prodi_kode" id="prodi_kode" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                    <option value="" disabled selected>-- Pilih Program Studi --</option>
+                                    <?php foreach ($prodi as $p) : ?>
+                                        <option value="<?= $p->kode; ?>"><?= $p->nama; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <input class="btn btn-success w-25 mx-auto" type="submit" value="Submit">
                         </div>

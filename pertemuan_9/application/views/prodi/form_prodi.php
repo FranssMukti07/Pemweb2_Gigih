@@ -9,7 +9,7 @@
                         <div class="input-group flex-nowrap d-flex flex-column" style="gap: 5px;">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Kode</span>
-                                <input type="text" name="kode" class="form-control" placeholder="Kode Prodi" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                <input type="text" name="kode" pattern="[A-Z]{2}" title="Hanya 2/3 Huruf!!" class="form-control" placeholder="Kode Prodi" aria-label="Username" aria-describedby="addon-wrapping" required>
                             </div>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Nama</span>

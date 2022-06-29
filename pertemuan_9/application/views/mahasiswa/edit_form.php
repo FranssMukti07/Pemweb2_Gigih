@@ -3,12 +3,6 @@
     <!-- Main content -->
     <section class="content">
         <div class="card-body utama font-weight-bold text-center border m-2">
-            <!-- Buat Logika untuk Pesan Berhasil menambah data -->
-            <?php if ($this->session->flashdata('success')) : ?>
-                <div class="alert alert-success" role="alert">
-                    <?php echo $this->session->flashdata('success'); ?>
-                </div>
-            <?php endif; ?>
             <div class="container">
                 <div class="row">
                     <div class="mt-lg-3 mx-auto">
@@ -22,7 +16,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">NIM</span>
                                         <input type="text" name="id" class="form-control" placeholder="Nomer Induk Mahasiswa" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_mahasiswa_detail->id; ?>" hidden>
-                                        <input type="text" name="nim" class="form-control" placeholder="Nomer Induk Mahasiswa" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_mahasiswa_detail->nim; ?>" required>
+                                        <input type="text" name="nim" pattern="[0-9]{4}" title="Harus 4 digit!!" class="form-control" placeholder="Nomer Induk Mahasiswa" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_mahasiswa_detail->nim; ?>" required>
                                     </div>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">Nama</span>
@@ -30,7 +24,11 @@
                                     </div>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">Gender</span>
-                                        <input type="text" name="gender" class="form-control" placeholder="Jenis Kelamin" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_mahasiswa_detail->gender; ?>" required>
+                                        <select name="gender" id="gender" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                            <option value="" selected disabled>-- Pilih Gender --</option>
+                                            <option value="L">Laki-Laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
                                     </div>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">Tempat Lahir</span>
@@ -46,7 +44,12 @@
                                     </div>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">Program Studi</span>
-                                        <input type="text" name="prodi_kode" class="form-control" placeholder="Program Studi" aria-label="Username" aria-describedby="addon-wrapping" value="<?= $query_mahasiswa_detail->prodi_kode; ?>" required>
+                                        <select name="prodi_kode" id="prodi_kode" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" required>
+                                            <option value="" disabled selected>-- Pilih Program Studi --</option>
+                                            <?php foreach ($prodi as $p) : ?>
+                                                <option value="<?= $p->kode; ?>"><?= $p->nama; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                     <a href="<?= base_url(); ?>mahasiswa/index"><input class="btn btn-success w-25 mx-auto" type="submit" value="Submit"></a>
                                 </div>

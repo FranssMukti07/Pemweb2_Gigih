@@ -10,7 +10,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between">
                         <h6><strong>NIDN</strong></h6>
-                        <h6><?= $dsn['nidn'] ?></h6>
+                        <h6><?= '1020' . $dsn['nidn'] ?></h6>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <h6><strong>Gender</strong></h6>

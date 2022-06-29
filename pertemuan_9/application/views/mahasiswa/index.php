@@ -6,6 +6,33 @@
             <div class="container">
                 <div class="row">
                     <div class="mt-lg-3 mx-auto">
+                        <!-- Logika pesan berhasil buat data -->
+                        <?php if ($this->session->flashdata('message_success')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil ditambahkan!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
+                        <!-- Logika pesan berhasil delete -->
+                        <?php if ($this->session->flashdata('message')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil dihapus!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
+                        <!-- Logika pesan berhasil edit -->
+                        <?php if ($this->session->flashdata('success')) : ?>
+                            <div class="alert alert-success alert-dismissible fade show text-left" role="alert">
+                                Data berhasil diubah!!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                         <h3 class="text-center display-4">
                             Daftar Mahasiswa STT-NF
                         </h3>

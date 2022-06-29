@@ -9,6 +9,8 @@ class Dosen extends CI_Controller
         $this->load->helper('url');
         if (!$this->session->userdata('username')) {
             redirect('auth/index');
+        } else if ($this->session->userdata('role_id') != 1) {
+            redirect('Landing/index');
         }
     }
 
@@ -47,9 +49,12 @@ class Dosen extends CI_Controller
     public function form()
     {
         $this->load->model('dosen_model', 'dosen');
+        $this->load->model('prodi_model', 'prodi');
+        $prodi = $this->prodi->get_all_data();
 
         $data = array(
             "title" => "Web Admin | Form Dosen",
+            "prodi" => $prodi,
         );
 
         $this->load->view('layout/head', $data);
@@ -81,6 +86,9 @@ class Dosen extends CI_Controller
 
         $this->dosen->save($db_dosen);
 
+        // Logika pesan berhasil buat data
+        $this->session->set_flashdata('message_success', 'Data <b>berhasil</b> ditambahkan!');
+
         redirect('dosen/index', 'refresh');
     }
 
@@ -88,13 +96,17 @@ class Dosen extends CI_Controller
     {
         $this->load->model('dosen_model', 'dosen');
         $query_dosen_detail = $this->dosen->get_by_id($id);
+        $this->load->model('prodi_model', 'prodi');
+        $prodi = $this->prodi->get_all_data();
 
         // echo "<pre>";
         // echo print_r($query_dosen_detail);
         // echo "</pre>";
 
         $data = array(
-            'query_dosen_detail' => $query_dosen_detail
+            'title' => 'Web Admin | Edit Dosen',
+            'query_dosen_detail' => $query_dosen_detail,
+            'prodi' => $prodi,
         );
 
         $this->load->view('layout/head', $data);
@@ -128,6 +140,9 @@ class Dosen extends CI_Controller
 
         $this->dosen->edit($_id, $array_update);
 
+        // Logika pesan berhasil edit redirect ke halaman index
+        $this->session->set_flashdata('success', 'Data berhasil diubah!');
+
         redirect('dosen/index', 'refresh');
     }
 
@@ -137,6 +152,9 @@ class Dosen extends CI_Controller
 
         $array_update['id'] = $id;
         $this->dosen->delete($array_update);
+
+        // Logika pesan berhasil hapus redirect ke halaman index
+        $this->session->set_flashdata('message', 'Data berhasil dihapus!');
 
         redirect('dosen/index', 'refresh');
     }

@@ -57,8 +57,9 @@
             <div class="image">
                 <img src="<?= base_url('assets/back-end/template/') ?>dist/img/kafe3.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
+            <!-- tampilkan nama yang sedang login, nama mengambil dari database -->
             <div class="info">
-                <a href="#" class="d-block">Franss Mukti</a>
+                <a href="#" class="d-block"><?= $this->session->userdata('name') ?></a>
             </div>
         </div>
 
@@ -78,7 +79,15 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                <li class="nav-item">
+                <li class="nav-item text-center">
+                    <a href="<?= base_url('landing/index') ?>" class="nav-link border border-info bg-info">
+                        <i class="nav-icon bi bi-house-door text-white"></i>
+                        <p class="text-white">
+                            Landing Pages
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item border border-info" style="border-radius: 5px;">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-folder-plus"></i>
                         <p>
@@ -108,7 +117,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item d-flex flex-column-reverse align-content-start">
+                <li class="nav-item mt-5 d-flex flex-column-reverse align-content-start">
                     <a href="<?= base_url('auth/logout') ?>" class="nav-link border border-warning text-center bg-warning">
                         <i class="nav-icon bi bi-box-arrow-left text-white"></i>
                         <p class="text-white">

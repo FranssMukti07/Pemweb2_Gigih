@@ -9,6 +9,8 @@ class Prodi extends CI_Controller
         $this->load->helper('url');
         if (!$this->session->userdata('username')) {
             redirect('auth/index');
+        } else if ($this->session->userdata('role_id') != 1) {
+            redirect('Landing/index');
         }
     }
 
@@ -74,6 +76,9 @@ class Prodi extends CI_Controller
 
         $this->prodi->save($db_prodi);
 
+        // Logika pesan berhasil buat data
+        $this->session->set_flashdata('message_success', 'Data <b>berhasil</b> ditambahkan!');
+
         redirect('prodi/index', 'refresh');
     }
 
@@ -114,6 +119,9 @@ class Prodi extends CI_Controller
 
         $this->prodi->edit($_id, $array_update);
 
+        // Logika pesan berhasil edit redirect ke halaman index
+        $this->session->set_flashdata('success', 'Data berhasil diubah');
+
         redirect('prodi/index', 'refresh');
     }
 
@@ -123,6 +131,9 @@ class Prodi extends CI_Controller
 
         $array_update['id'] = $id;
         $this->prodi->delete($array_update);
+
+        // Logika pesan berhasil hapus redirect ke halaman index
+        $this->session->set_flashdata('message', 'Data berhasil dihapus!');
 
         redirect('prodi/index', 'refresh');
     }

@@ -55,6 +55,14 @@ class Auth_model extends CI_Model
         return $query->row();
     }
 
+    // buat fungsi registrasi user
+    public function register($data)
+    {
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $this->db->insert($this->_table, $data);
+        return $this->db->insert_id();
+    }
+
     public function logout()
     {
         $this->session->unset_userdata(self::SESSION_KEY);

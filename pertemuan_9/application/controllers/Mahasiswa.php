@@ -9,6 +9,8 @@ class Mahasiswa extends CI_Controller
         $this->load->helper('url');
         if (!$this->session->userdata('username')) {
             redirect('auth/index');
+        } else if ($this->session->userdata('role_id') != 1) {
+            redirect('Landing/index');
         }
     }
 
@@ -47,9 +49,12 @@ class Mahasiswa extends CI_Controller
     public function form()
     {
         $this->load->model('mahasiswa_model', 'mahasiswa');
+        $this->load->model('prodi_model', 'prodi');
+        $prodi = $this->prodi->get_all_data();
 
         $data = array(
-            "title" => "Web Admin | Form Mahasiswa"
+            "title" => "Web Admin | Form Mahasiswa",
+            'prodi' => $prodi
         );
 
         $this->load->view('layout/head', $data);
@@ -81,6 +86,9 @@ class Mahasiswa extends CI_Controller
 
         $this->mahasiswa->save($db_mahasiswa);
 
+        // Logika pesan berhasil buat data
+        $this->session->set_flashdata('message_success', 'Data <b>berhasil</b> ditambahkan!');
+
         redirect('mahasiswa/index', 'refresh');
     }
 
@@ -88,6 +96,8 @@ class Mahasiswa extends CI_Controller
     {
         $this->load->model('mahasiswa_model', 'mahasiswa');
         $query_mahasiswa_detail = $this->mahasiswa->get_by_id($id);
+        $this->load->model('prodi_model', 'prodi');
+        $prodi = $this->prodi->get_all_data();
 
         // echo "<pre>";
         // echo print_r($query_mahasiswa_detail);
@@ -95,7 +105,8 @@ class Mahasiswa extends CI_Controller
 
         $data = array(
             "title" => "Web Admin | Edit Mahasiswa",
-            'query_mahasiswa_detail' => $query_mahasiswa_detail
+            'query_mahasiswa_detail' => $query_mahasiswa_detail,
+            'prodi' => $prodi
         );
 
         $this->load->view('layout/head', $data);
@@ -130,6 +141,9 @@ class Mahasiswa extends CI_Controller
 
         $this->mahasiswa->edit($_id, $array_update);
 
+        // Logika pesan berhasil edit redirect ke halaman index
+        $this->session->set_flashdata('success', 'Data berhasil diubah');
+
         redirect('mahasiswa/index', 'refresh');
     }
 
@@ -140,6 +154,9 @@ class Mahasiswa extends CI_Controller
         $array_update['id'] = $id ;
         $this->mahasiswa->delete($array_update);
 
+        // Logika pesan berhasil hapus redirect ke halaman index
+        $this->session->set_flashdata('message', 'Data berhasil dihapus!');
+        
         redirect('mahasiswa/index', 'refresh');
     }
 }
